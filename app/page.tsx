@@ -1,4 +1,7 @@
 import Image from "next/image";
+import styles from "./home.module.css";
+import StatusBadge from "./components/StatusBadge";
+import { lusitana } from "@/app/ui/fonts";
 
 export default function Home() {
   return (
@@ -13,7 +16,7 @@ export default function Home() {
           priority
         />
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+          <h1 className={`${lusitana.className} max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50`}>
             To get started, edit the page.tsx file.
           </h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
@@ -33,6 +36,17 @@ export default function Home() {
             </a>{" "}
             center.
           </p>
+          {/* Tailwind CSS Practice: Black Triangle */}
+          <div className="relative w-0 h-0 border-l-[15px] border-r-[15px] border-b-[26px] border-l-transparent border-r-transparent border-b-black" />
+          
+          {/* CSS Module Practice: Another Triangle */}
+          <div className={styles.shape} />
+
+          {/* clsx Conditional Styling Demo */}
+          <div className="flex gap-3 mt-4">
+            <StatusBadge status="pending" />
+            <StatusBadge status="paid" />
+          </div>
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <a
@@ -58,6 +72,24 @@ export default function Home() {
           >
             Documentation
           </a>
+        </div>
+
+        {/* Hero Images Section */}
+        <div className="w-full mt-12 flex items-center justify-center">
+          <Image
+            src="/hero-desktop.png"
+            width={1000}
+            height={760}
+            alt="Dashboard hero image - Desktop"
+            className="hidden md:block w-full max-w-3xl"
+          />
+          <Image
+            src="/hero-mobile.png"
+            width={560}
+            height={620}
+            alt="Dashboard hero image - Mobile"
+            className="md:hidden w-full"
+          />
         </div>
       </main>
     </div>
