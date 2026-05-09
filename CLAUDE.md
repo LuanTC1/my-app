@@ -35,9 +35,9 @@
 - [x] **Chapter 2: CSS Styling** - Tailwind, CSS Modules, clsx
 - [x] **Chapter 3: Optimizing Fonts and Images** - `next/font`, `next/image`
 - [x] **Chapter 4: Creating Layouts and Pages** - Nested routes, File-based routing
+- [x] **Chapter 5: Navigating Between Pages** - `Link` component, Active links
 
 ### In Progress 🔄
-- [ ] **Chapter 5: Navigating Between Pages** - `Link` component, Active links
 - [ ] **Chapter 6: Setting Up Your Database** - Database setup & seeding
 - [ ] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
 - [ ] **Chapter 8: Static and Dynamic Rendering** - Rendering strategies
@@ -262,8 +262,8 @@ Learnings: [Key takeaways]
 
 ## ✨ Last Updated
 - Created: April 22, 2026
-- Last Progress: Chapter 4 Complete
-- Current Focus: Chapter 5 - Navigation
+- Last Progress: Chapter 5 Complete
+- Current Focus: Chapter 6 - Database Setup
 
 ---
 
