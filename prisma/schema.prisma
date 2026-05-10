@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// User model - for authentication
+model User {
+  id    String  @id @default(cuid())
+  email String  @unique
+  name  String?
+
+  @@map("users")
+}
+
+// Customer model - invoices belong to customers
+model Customer {
+  id       String  @id @default(cuid())
+  name     String
+  email    String
+  imageUrl String?
+  phone    String?
+
+  invoices Invoice[]
+
+  @@map("customers")
+}
+
+// Invoice model - transactions
+model Invoice {
+  id          String  @id @default(cuid())
+  customerId  String
+  customer    Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  
+  amount      Int     // in cents
+  date        DateTime
+  status      String  // 'pending' or 'paid'
+  description String?
+
+  @@map("invoices")
+}
+
+// Revenue model - for dashboard charts
+model Revenue {
+  id    String  @id @default(cuid())
+  month String  @unique
+  revenue Int    // in cents
+
+  @@map("revenue")
+}

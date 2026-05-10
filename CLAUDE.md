@@ -19,6 +19,10 @@
 | **TypeScript** | ^5 | Type safety & DX |
 | **Tailwind CSS** | ^4 | Utility-first styling |
 | **clsx** | ^2.1.1 | Conditional class names |
+| **Prisma** | ^7.8.0 | ORM for database (Chapter 6) |
+| **PostgreSQL** | 18.3 | Database (Chapter 6) |
+| **@prisma/adapter-pg** | ^7.8.0 | PostgreSQL adapter for Prisma |
+| **pg** | ^8 | PostgreSQL client |
 | **ESLint** | ^9 | Code linting |
 
 ### Important Notes
@@ -36,9 +40,10 @@
 - [x] **Chapter 3: Optimizing Fonts and Images** - `next/font`, `next/image`
 - [x] **Chapter 4: Creating Layouts and Pages** - Nested routes, File-based routing
 - [x] **Chapter 5: Navigating Between Pages** - `Link` component, Active links
+- [x] **Chapter 6: Setting Up Your Database** - PostgreSQL, Prisma, data seeding
 
 ### In Progress 🔄
-- [ ] **Chapter 6: Setting Up Your Database** - Database setup & seeding
+- [ ] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
 - [ ] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
 - [ ] **Chapter 8: Static and Dynamic Rendering** - Rendering strategies
 - [ ] **Chapter 9: Streaming** - Streaming UI, Loading skeletons
@@ -59,31 +64,43 @@ my-app/
 ├── app/                          # App Router (main code)
 │   ├── components/              # Reusable UI components
 │   │   └── StatusBadge.tsx      # Example: conditional styling with clsx
+│   ├── dashboard/                # Dashboard routes
+│   │   ├── layout.tsx            # Dashboard layout with sidebar
+│   │   ├── test-db/
+│   │   │   └── page.tsx          # Database connection test page
+│   │   └── [other routes]
+│   ├── generated/                # Auto-generated Prisma files
+│   │   └── prisma/              # Prisma client
+│   ├── lib/                      # Utility functions & helpers
+│   │   └── db.ts                 # Database utility & query functions (Chapter 6)
 │   ├── ui/                       # Pre-styled UI components & utilities
 │   │   ├── fonts.ts              # Font configurations
 │   │   ├── global.css            # Global styles
-│   │   └── home.module.css       # CSS Module example
+│   │   ├── home.module.css       # CSS Module example
+│   │   ├── sidenav.tsx          # Dashboard sidebar (Chapter 4)
+│   │   └── nav-links.tsx         # Navigation links (Chapter 5)
 │   ├── layout.tsx                # Root layout component
 │   ├── page.tsx                  # Home page
 │   └── globals.css               # Global Tailwind styles
+├── prisma/                       # Prisma ORM files
+│   ├── schema.prisma            # Database schema (models, relations)
+│   ├── seed.ts                  # Database seed script
+│   └── migrations/              # Database migrations
 ├── public/                       # Static assets
 │   ├── hero-desktop.svg
 │   ├── hero-mobile.svg
 │   └── [other images]
+├── .env.local                    # Environment variables (local development)
+├── DATABASE_SETUP.md             # Database setup guide
 ├── package.json
 ├── tsconfig.json
 ├── next.config.ts
 ├── tailwind.config.ts            # Tailwind configuration
 ├── postcss.config.mjs            # PostCSS configuration
+├── prisma.config.ts              # Prisma configuration
 ├── eslint.config.mjs             # ESLint configuration
 ├── AGENTS.md                     # Agent rules for AI
 └── CLAUDE.md                     # This file - project guidelines
-
-# Future chapters will add:
-# - app/lib/                      # Utility functions, data fetching
-# - app/dashboard/                # Dashboard routes
-# - app/dashboard/layout.tsx      # Dashboard layout
-# - app/dashboard/[id]/           # Dynamic routes
 ```
 
 ---
@@ -262,8 +279,8 @@ Learnings: [Key takeaways]
 
 ## ✨ Last Updated
 - Created: April 22, 2026
-- Last Progress: Chapter 5 Complete
-- Current Focus: Chapter 6 - Database Setup
+- Last Progress: Chapter 6 - Database Setup (Foundation files)
+- Current Focus: Complete Chapter 6 - Setup database & seed
 
 ---
 
