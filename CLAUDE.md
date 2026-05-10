@@ -41,9 +41,10 @@
 - [x] **Chapter 4: Creating Layouts and Pages** - Nested routes, File-based routing
 - [x] **Chapter 5: Navigating Between Pages** - `Link` component, Active links
 - [x] **Chapter 6: Setting Up Your Database** - PostgreSQL, Prisma, data seeding
+- [x] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
 
 ### In Progress 🔄
-- [ ] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
+- [ ] **Chapter 8: Static and Dynamic Rendering** - Rendering strategies
 - [ ] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
 - [ ] **Chapter 8: Static and Dynamic Rendering** - Rendering strategies
 - [ ] **Chapter 9: Streaming** - Streaming UI, Loading skeletons
