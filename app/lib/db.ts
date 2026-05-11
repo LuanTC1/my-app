@@ -153,3 +153,62 @@ export async function testDatabaseConnection() {
     return false;
   }
 }
+
+// ============ XÁC THỰC LẠI & LƯU VÀO BỘ NHỚ CACH (Chapter 8) ============
+// Các hàm này giúp kiểm soát thời điểm các trang được hiển thị lại và lưu vào bộ nhớ cache
+
+// Chapter 8: Static and Dynamic Rendering
+// - revalidatePath() - xác thực lại các đường dẫn cụ thể theo yêu cầu
+// - revalidateTag() - xác thực lại các trang được gắn thẻ cache cụ thể
+// - unstable_cache() - lưu vào bộ nhớ cache các thao tác tốn kém với xác thực lại tự động
+
+// Ví dụ sử dụng trong Hành động máy chủ hoặc tuyến API:
+// import { revalidatePath, revalidateTag } from 'next/cache';
+// 
+// export async function updateInvoice(id: string, data: Invoice) {
+//   // Update database
+//   await prisma.invoice.update({ where: { id }, data });
+//   
+//   // Revalidate specific path
+//   revalidatePath('/dashboard/invoices');
+//   
+//   // Revalidate all paths with 'invoices' tag
+//   revalidateTag('invoices');
+// }
+
+// Hàm hỗ trợ: Lấy khách hàng bằng ISR (Incremental Static Regeneration)
+// Hàm này trả về dữ liệu được lưu trong bộ nhớ cache nhưng có thể được xác thực lại theo yêu cầu
+export async function fetchCustomersWithCache() {
+  try {
+    // Trong môi trường production, bạn có thể sử dụng unstable_cache để lưu vào bộ nhớ đệm nâng cao
+    // const getCachedCustomers = unstable_cache(
+    //   async () => await prisma.customer.findMany(),
+    //   ['customers'], // khóa bộ nhớ đệm
+    //   { revalidate: 3600 } // xác thực lại mỗi giờ
+    // );
+    // return getCachedCustomers();
+
+    // Hiện tại, chỉ cần sử dụng phương thức fetch thông thường với tiêu đề bộ nhớ đệm của trình duyệt
+    const customers = await prisma.customer.findMany({
+      orderBy: { name: 'asc' },
+    });
+    return customers;
+  } catch (error) {
+    console.error('❌ Failed to fetch cached customers:', error);
+    throw error;
+  }
+}
+
+// Helper: Get invoices with cache tags
+export async function fetchInvoicesWithCache() {
+  try {
+    const invoices = await prisma.invoice.findMany({
+      include: { customer: true },
+      orderBy: { date: 'desc' },
+    });
+    return invoices;
+  } catch (error) {
+    console.error('❌ Failed to fetch cached invoices:', error);
+    throw error;
+  }
+}

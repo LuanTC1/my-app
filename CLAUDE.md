@@ -42,9 +42,11 @@
 - [x] **Chapter 5: Navigating Between Pages** - `Link` component, Active links
 - [x] **Chapter 6: Setting Up Your Database** - PostgreSQL, Prisma, data seeding
 - [x] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
+- [x] **Chapter 8: Static and Dynamic Rendering** - ISR, revalidation strategies
+- [x] **Chapter 9: Streaming** - Suspense boundaries, skeleton loaders, progressive rendering
 
 ### In Progress 🔄
-- [ ] **Chapter 8: Static and Dynamic Rendering** - Rendering strategies
+- [ ] **Chapter 10: Adding Search and Pagination** - Query params, pagination
 - [ ] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
 - [ ] **Chapter 8: Static and Dynamic Rendering** - Rendering strategies
 - [ ] **Chapter 9: Streaming** - Streaming UI, Loading skeletons
@@ -67,19 +69,27 @@ my-app/
 │   │   └── StatusBadge.tsx      # Example: conditional styling with clsx
 │   ├── dashboard/                # Dashboard routes
 │   │   ├── layout.tsx            # Dashboard layout with sidebar
+│   │   ├── page.tsx              # Main dashboard (Chapter 7-9)
 │   │   ├── test-db/
 │   │   │   └── page.tsx          # Database connection test page
+│   │   ├── rendering-demo/       # Chapter 8-9: Rendering demo page
+│   │   │   └── page.tsx
 │   │   └── [other routes]
 │   ├── generated/                # Auto-generated Prisma files
 │   │   └── prisma/              # Prisma client
 │   ├── lib/                      # Utility functions & helpers
-│   │   └── db.ts                 # Database utility & query functions (Chapter 6)
+│   │   └── db.ts                 # Database utility & query functions
 │   ├── ui/                       # Pre-styled UI components & utilities
 │   │   ├── fonts.ts              # Font configurations
 │   │   ├── global.css            # Global styles
 │   │   ├── home.module.css       # CSS Module example
 │   │   ├── sidenav.tsx          # Dashboard sidebar (Chapter 4)
-│   │   └── nav-links.tsx         # Navigation links (Chapter 5)
+│   │   ├── nav-links.tsx         # Navigation links (Chapter 5)
+│   │   ├── skeletons.tsx         # Loading skeletons (Chapter 9)
+│   │   └── dashboard/
+│   │       ├── cards.tsx         # Statistics cards (Chapter 7)
+│   │       ├── recent-invoices.tsx # Recent invoices table (Chapter 7)
+│   │       └── revenue-chart.tsx # Revenue chart (Chapter 7)
 │   ├── layout.tsx                # Root layout component
 │   ├── page.tsx                  # Home page
 │   └── globals.css               # Global Tailwind styles
