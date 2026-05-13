@@ -44,13 +44,9 @@
 - [x] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
 - [x] **Chapter 8: Static and Dynamic Rendering** - ISR, revalidation strategies
 - [x] **Chapter 9: Streaming** - Suspense boundaries, skeleton loaders, progressive rendering
+- [x] **Chapter 10: Adding Search and Pagination** - URL query params, pagination
 
 ### In Progress 🔄
-- [ ] **Chapter 10: Adding Search and Pagination** - Query params, pagination
-- [ ] **Chapter 7: Fetching Data** - Server Components, data fetching patterns
-- [ ] **Chapter 8: Static and Dynamic Rendering** - Rendering strategies
-- [ ] **Chapter 9: Streaming** - Streaming UI, Loading skeletons
-- [ ] **Chapter 10: Adding Search and Pagination** - Query params, pagination
 - [ ] **Chapter 11: Mutating Data** - Server Actions, revalidation
 - [ ] **Chapter 12: Handling Errors** - error.tsx, notFound()
 - [ ] **Chapter 13: Improving Accessibility** - Form validation, ARIA

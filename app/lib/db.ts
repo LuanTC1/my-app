@@ -212,3 +212,104 @@ export async function fetchInvoicesWithCache() {
     throw error;
   }
 }
+
+// ============ SEARCH & PAGINATION (Chapter 10) ============
+// Functions to handle search queries and pagination
+
+// Fetch invoices with search and pagination
+// Parameters:
+// - query: search term to filter by customer name/email or invoice ID
+// - page: current page (1-indexed)
+// - pageSize: items per page (default: 10)
+export async function fetchInvoicesWithSearch(
+  query: string = '',
+  page: number = 1,
+  pageSize: number = 10
+) {
+  try {
+    // Calculate skip value for pagination
+    const skip = (page - 1) * pageSize;
+
+    // Build filter condition if search query provided
+    const whereCondition = query
+      ? {
+          OR: [
+            { customer: { name: { contains: query, mode: 'insensitive' as const } } },
+            { customer: { email: { contains: query, mode: 'insensitive' as const } } },
+            { description: { contains: query, mode: 'insensitive' as const } },
+          ],
+        }
+      : {};
+
+    // Fetch paginated results
+    const invoices = await prisma.invoice.findMany({
+      where: whereCondition,
+      include: { customer: true },
+      orderBy: { date: 'desc' },
+      skip,
+      take: pageSize,
+    });
+
+    // Get total count for pagination metadata
+    const totalCount = await prisma.invoice.count({ where: whereCondition });
+
+    return {
+      invoices,
+      pagination: {
+        currentPage: page,
+        pageSize,
+        totalCount,
+        totalPages: Math.ceil(totalCount / pageSize),
+      },
+    };
+  } catch (error) {
+    console.error('❌ Failed to fetch invoices with search:', error);
+    throw error;
+  }
+}
+
+// Fetch customers with search and pagination
+export async function fetchCustomersWithSearch(
+  query: string = '',
+  page: number = 1,
+  pageSize: number = 10
+) {
+  try {
+    const skip = (page - 1) * pageSize;
+
+    // Build filter condition
+    const whereCondition = query
+      ? {
+          OR: [
+            { name: { contains: query, mode: 'insensitive' as const } },
+            { email: { contains: query, mode: 'insensitive' as const } },
+            { phone: { contains: query, mode: 'insensitive' as const } },
+          ],
+        }
+      : {};
+
+    // Fetch paginated results
+    const customers = await prisma.customer.findMany({
+      where: whereCondition,
+      orderBy: { name: 'asc' },
+      skip,
+      take: pageSize,
+    });
+
+    // Get total count
+    const totalCount = await prisma.customer.count({ where: whereCondition });
+
+    return {
+      customers,
+      pagination: {
+        currentPage: page,
+        pageSize,
+        totalCount,
+        totalPages: Math.ceil(totalCount / pageSize),
+      },
+    };
+  } catch (error) {
+    console.error('❌ Failed to fetch customers with search:', error);
+    throw error;
+  }
+}
