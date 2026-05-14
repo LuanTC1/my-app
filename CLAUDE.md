@@ -45,9 +45,9 @@
 - [x] **Chapter 8: Static and Dynamic Rendering** - ISR, revalidation strategies
 - [x] **Chapter 9: Streaming** - Suspense boundaries, skeleton loaders, progressive rendering
 - [x] **Chapter 10: Adding Search and Pagination** - URL query params, pagination
+- [x] **Chapter 11: Mutating Data** - Server Actions, form components, revalidation
 
 ### In Progress 🔄
-- [ ] **Chapter 11: Mutating Data** - Server Actions, revalidation
 - [ ] **Chapter 12: Handling Errors** - error.tsx, notFound()
 - [ ] **Chapter 13: Improving Accessibility** - Form validation, ARIA
 - [ ] **Chapter 14: Adding Authentication** - NextAuth.js, security
@@ -82,10 +82,17 @@ my-app/
 │   │   ├── sidenav.tsx          # Dashboard sidebar (Chapter 4)
 │   │   ├── nav-links.tsx         # Navigation links (Chapter 5)
 │   │   ├── skeletons.tsx         # Loading skeletons (Chapter 9)
+│   │   ├── search.tsx            # Search input component (Chapter 10)
+│   │   ├── pagination.tsx        # Pagination component (Chapter 10)
+│   │   ├── invoices/
+│   │   │   ├── create-invoice-form.tsx  # Create invoice form (Chapter 11)
+│   │   │   └── delete-invoice-button.tsx # Delete invoice button (Chapter 11)
 │   │   └── dashboard/
 │   │       ├── cards.tsx         # Statistics cards (Chapter 7)
 │   │       ├── recent-invoices.tsx # Recent invoices table (Chapter 7)
 │   │       └── revenue-chart.tsx # Revenue chart (Chapter 7)
+│   ├── actions/                  # Server Actions for mutations (Chapter 11)
+│   │   └── invoices.ts           # Create, update, delete invoice actions
 │   ├── layout.tsx                # Root layout component
 │   ├── page.tsx                  # Home page
 │   └── globals.css               # Global Tailwind styles
@@ -228,17 +235,6 @@ When helping with this project:
 - Keep notes on learnings and challenges
 - Record custom implementations vs course examples
 
-### Chapter Template
-```
-## Chapter N: [Title] 
-Status: ⬜ Not Started / 🔄 In Progress / ✅ Completed
-Key Concepts: [List main topics]
-Implementation: [What was built]
-Challenges: [Issues encountered & solutions]
-Learnings: [Key takeaways]
-```
-
----
 
 ## 🔗 Current Dependencies
 
@@ -250,6 +246,7 @@ Learnings: [Key takeaways]
   "typescript": "^5",
   "@tailwindcss/postcss": "^4",
   "clsx": "^2.1.1",
+  "use-debounce": "^10.0.0", // Added for search debouncing (Chapter 10)
   "eslint": "^9",
   "eslint-config-next": "16.2.4"
 }
