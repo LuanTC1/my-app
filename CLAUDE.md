@@ -46,9 +46,9 @@
 - [x] **Chapter 9: Streaming** - Suspense boundaries, skeleton loaders, progressive rendering
 - [x] **Chapter 10: Adding Search and Pagination** - URL query params, pagination
 - [x] **Chapter 11: Mutating Data** - Server Actions, form components, revalidation
+- [x] **Chapter 12: Handling Errors** - error.tsx, notFound(), error boundaries
 
 ### In Progress 🔄
-- [ ] **Chapter 12: Handling Errors** - error.tsx, notFound()
 - [ ] **Chapter 13: Improving Accessibility** - Form validation, ARIA
 - [ ] **Chapter 14: Adding Authentication** - NextAuth.js, security
 - [ ] **Chapter 15: Adding Metadata** - SEO, metadata API
@@ -66,10 +66,21 @@ my-app/
 │   ├── dashboard/                # Dashboard routes
 │   │   ├── layout.tsx            # Dashboard layout with sidebar
 │   │   ├── page.tsx              # Main dashboard (Chapter 7-9)
+│   │   ├── error.tsx             # Dashboard error boundary (Chapter 12)
+│   │   ├── not-found.tsx         # Dashboard 404 page (Chapter 12)
 │   │   ├── test-db/
 │   │   │   └── page.tsx          # Database connection test page
 │   │   ├── rendering-demo/       # Chapter 8-9: Rendering demo page
 │   │   │   └── page.tsx
+│   │   ├── invoices/
+│   │   │   ├── page.tsx          # Invoices list (Chapters 10-11)
+│   │   │   ├── error.tsx         # Invoices error boundary (Chapter 12)
+│   │   │   └── [id]/
+│   │   │       └── page.tsx      # Invoice detail page (Chapter 12)
+│   │   ├── customers/
+│   │   │   ├── page.tsx          # Customers list (Chapter 10)
+│   │   │   └── [id]/
+│   │   │       └── page.tsx      # Customer detail page (optional)
 │   │   └── [other routes]
 │   ├── generated/                # Auto-generated Prisma files
 │   │   └── prisma/              # Prisma client
@@ -95,6 +106,8 @@ my-app/
 │   │   └── invoices.ts           # Create, update, delete invoice actions
 │   ├── layout.tsx                # Root layout component
 │   ├── page.tsx                  # Home page
+│   ├── error.tsx                 # Global error boundary (Chapter 12)
+│   ├── not-found.tsx             # Global 404 page (Chapter 12)
 │   └── globals.css               # Global Tailwind styles
 ├── prisma/                       # Prisma ORM files
 │   ├── schema.prisma            # Database schema (models, relations)
