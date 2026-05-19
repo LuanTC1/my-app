@@ -47,9 +47,9 @@
 - [x] **Chapter 10: Adding Search and Pagination** - URL query params, pagination
 - [x] **Chapter 11: Mutating Data** - Server Actions, form components, revalidation
 - [x] **Chapter 12: Handling Errors** - error.tsx, notFound(), error boundaries
+- [x] **Chapter 13: Improving Accessibility** - Form validation, ARIA, keyboard navigation
 
 ### In Progress 🔄
-- [ ] **Chapter 13: Improving Accessibility** - Form validation, ARIA
 - [ ] **Chapter 14: Adding Authentication** - NextAuth.js, security
 - [ ] **Chapter 15: Adding Metadata** - SEO, metadata API
 - [ ] **Chapter 16: Next Steps** - Deployment & best practices
@@ -204,6 +204,7 @@ npm run lint
 5. **Rendering** - Static vs Dynamic
 6. **Optimization** - Images, Fonts, Code splitting
 7. **Special Files** - `layout.tsx`, `error.tsx`, `not-found.tsx`
+8. **Accessibility (WCAG 2.1)** - ARIA attributes, semantic HTML, keyboard navigation, screen readers
 
 ---
 
@@ -220,6 +221,7 @@ When helping with this project:
 - Explain concepts alongside code implementation
 - Update progress tracking as chapters complete
 - Create reusable components in `app/components/`
+- Implement **accessibility** (WCAG 2.1) from Chapter 13+: ARIA attributes, semantic HTML, keyboard navigation
 
 ### ❌ DON'T
 - Mix old Pages Router patterns with App Router
@@ -229,6 +231,7 @@ When helping with this project:
 - Skip environment setup steps
 - Implement features before the assigned chapter
 - Use deprecated Next.js features
+- Ignore accessibility requirements in forms and interactive components
 
 ### When Implementing Features
 1. Check current chapter requirements
@@ -237,6 +240,7 @@ When helping with this project:
 4. Implement step-by-step
 5. Test in dev server
 6. Update progress tracking
+7. Add accessibility features from Chapter 13+ (ARIA labels, focus rings, semantic HTML)
 
 ---
 
@@ -296,8 +300,6 @@ When helping with this project:
 
 ## ✨ Last Updated
 - Created: April 22, 2026
-- Last Progress: Chapter 6 - Database Setup (Foundation files)
-- Current Focus: Complete Chapter 6 - Setup database & seed
 
 ---
 
