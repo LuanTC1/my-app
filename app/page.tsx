@@ -1,7 +1,13 @@
+import type { Metadata } from 'next';
 import Image from "next/image";
 import styles from "./home.module.css";
 import StatusBadge from "./components/StatusBadge";
 import { lusitana } from "@/app/ui/fonts";
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Welcome to Acme Dashboard - Your business management solution',
+};
 
 export default function Home() {
   return (

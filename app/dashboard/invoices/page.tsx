@@ -3,6 +3,7 @@
 // URL: http://localhost:3000/dashboard/invoices
 // Features: Search by customer/email, pagination, create/delete invoices
 
+import type { Metadata } from 'next';
 import { fetchInvoicesWithSearch, fetchAllCustomers } from '@/app/lib/db';
 import { Search } from '@/app/ui/search';
 import { Pagination } from '@/app/ui/pagination';
@@ -10,6 +11,11 @@ import CreateInvoiceForm from '@/app/ui/invoices/create-invoice-form';
 import DeleteInvoiceButton from '@/app/ui/invoices/delete-invoice-button';
 import { Suspense } from 'react';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
+
+export const metadata: Metadata = {
+  title: 'Invoices',
+  description: 'View and manage your invoices',
+};
 
 // Props passed by Next.js for server components
 interface PageProps {

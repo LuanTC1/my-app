@@ -8,6 +8,7 @@
 // - Revenue chart
 // - Recent invoices table
 
+import type { Metadata } from 'next';
 import { DashboardCards } from '@/app/ui/dashboard/cards';
 import { RecentInvoices } from '@/app/ui/dashboard/recent-invoices';
 import { RevenueChart } from '@/app/ui/dashboard/revenue-chart';
@@ -17,6 +18,11 @@ import {
   InvoicesTableSkeleton,
   ChartSkeleton,
 } from '@/app/ui/skeletons';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'View your dashboard analytics',
+};
 
 // Chapter 8: Define revalidation strategy
 // This page uses ISR (Incremental Static Regeneration)

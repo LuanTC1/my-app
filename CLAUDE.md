@@ -48,10 +48,10 @@
 - [x] **Chapter 11: Mutating Data** - Server Actions, form components, revalidation
 - [x] **Chapter 12: Handling Errors** - error.tsx, notFound(), error boundaries
 - [x] **Chapter 13: Improving Accessibility** - Form validation, ARIA, keyboard navigation
+- [x] **Chapter 14: Adding Authentication** - NextAuth.js, GitHub OAuth, route protection
 
 ### In Progress 🔄
-- [ ] **Chapter 14: Adding Authentication** - NextAuth.js, GitHub OAuth, route protection
-- [ ] **Chapter 15: Adding Metadata** - SEO, metadata API
+- [ ] **Chapter 15: Adding Metadata** - SEO, metadata API, dynamic metadata
 - [ ] **Chapter 16: Next Steps** - Deployment & best practices
 
 ---
@@ -395,13 +395,90 @@ NEXTAUTH_URL=http://localhost:3000
 
 ## ✨ Last Updated
 - Created: April 22, 2026
-- Last Progress: Chapter 14 - Authentication (In Progress)
-  - NextAuth.js v5 configuration with GitHub OAuth
-  - Middleware for route protection
-  - Login page with OAuth button
-  - User info display component
-  - Logout functionality
-- Current Focus: Setting up GitHub OAuth and testing authentication flow
+- Last Progress: Chapter 15 - Adding Metadata (In Progress)
+  - Root metadata with template and OpenGraph
+  - Page-level metadata for all dashboard routes
+  - Search engine optimization setup
+  - Metadata inheritance and template system
+- Current Focus: SEO and metadata API implementation
+
+---
+
+## 📝 Chapter 15: Adding Metadata - Implementation Details
+
+### What is Metadata?
+
+Metadata in Next.js is information about your web pages that helps:
+- **SEO**: Search engines understand your page content
+- **Social Sharing**: Better preview when shared on social media
+- **Browser**: Title in tab, favicon, viewport settings
+
+### Metadata Configuration Strategy
+
+**Root Layout (app/layout.tsx)**
+```typescript
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Acme Dashboard",  // %s = page title
+    default: "Acme Dashboard",         // fallback
+  },
+  description: "Official Acme Dashboard built with Next.js and React.",
+  metadataBase: new URL("http://localhost:3000"),
+  openGraph: {
+    title: "Acme Dashboard",
+    description: "Official Acme Dashboard built with Next.js and React.",
+    type: "website",
+    locale: "en_US",
+  },
+};
+```
+
+**Page-Level Metadata**
+```typescript
+// app/dashboard/invoices/page.tsx
+export const metadata: Metadata = {
+  title: 'Invoices',  // Combined with template = "Invoices | Acme Dashboard"
+  description: 'View and manage your invoices',
+};
+```
+
+### Implemented Metadata
+
+| Page | Title | Description |
+|------|-------|-------------|
+| app/layout.tsx (root) | "Acme Dashboard" + template | "Official Acme Dashboard..." |
+| app/page.tsx (home) | "Home" → "Home \| Acme Dashboard" | "Welcome to Acme Dashboard..." |
+| app/login/page.tsx | "Login" → "Login \| Acme Dashboard" | "Sign in to your Acme Dashboard account" |
+| app/dashboard/page.tsx | "Dashboard" → "Dashboard \| Acme Dashboard" | "View your dashboard analytics" |
+| app/dashboard/invoices/page.tsx | "Invoices" → "Invoices \| Acme Dashboard" | "View and manage your invoices" |
+| app/dashboard/customers/page.tsx | "Customers" → "Customers \| Acme Dashboard" | "View and manage your customers" |
+
+### How Metadata Works in Next.js 16
+
+1. **Export `metadata` object** from layout or page file
+2. **Metadata inheritance**: Child pages can override parent metadata
+3. **Title template**: Parent's `title.template` combines with child's `title`
+4. **Dynamic metadata**: Use `generateMetadata()` for dynamic titles (e.g., product names)
+5. **Open Graph**: Social media sharing preview
+
+### Testing Metadata
+
+**In Browser:**
+- Right-click page → View Page Source
+- Look for `<title>` and `<meta name="description">` tags
+- Or use DevTools → Elements tab
+
+**SEO Tools:**
+- [Google Search Console](https://search.google.com/search-console) - Check indexed pages
+- [Meta Tags Debugger](https://metatags.io) - See how page appears on social media
+
+### Next Chapter (Chapter 16)
+
+Chapter 16 covers:
+- Deployment strategies (Vercel, self-hosted)
+- Production optimization
+- Monitoring and analytics
+- Best practices for production
 
 ---
 

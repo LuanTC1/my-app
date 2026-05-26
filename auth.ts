@@ -29,8 +29,8 @@ export const authOptions: NextAuthOptions = {
         token.accessToken = account.access_token;
       }
       if (profile) {
-        token.id = profile.id as string;
-        token.image = profile.image as string;
+        token.id = (profile as any).id as string;
+        token.image = (profile as any).image as string;
       }
       return token;
     },

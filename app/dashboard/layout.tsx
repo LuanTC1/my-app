@@ -2,8 +2,14 @@
 // Layout được share giữa tất cả dashboard pages (/dashboard, /dashboard/customers, /dashboard/invoices)
 // Nó sẽ hiển thị SideNav bên trái, content bên phải
 
+import type { Metadata } from 'next';
 import SideNav from '@/app/ui/dashboard/sidenav';
 import UserInfo from '@/app/ui/user-info';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'Your Acme Dashboard',
+};
 
 export default function DashboardLayout({
   // children: React component content của page hiện tại

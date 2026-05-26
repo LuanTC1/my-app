@@ -3,11 +3,17 @@
 // URL: http://localhost:3000/dashboard/customers
 // Features: Search by name/email/phone, pagination
 
+import type { Metadata } from 'next';
 import { fetchCustomersWithSearch } from '@/app/lib/db';
 import { Search } from '@/app/ui/search';
 import { Pagination } from '@/app/ui/pagination';
 import { Suspense } from 'react';
 import { CardsSkeleton } from '@/app/ui/skeletons';
+
+export const metadata: Metadata = {
+  title: 'Customers',
+  description: 'View and manage your customers',
+};
 
 // Props passed by Next.js for server components
 interface PageProps {
