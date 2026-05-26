@@ -3,6 +3,7 @@
 // Nó sẽ hiển thị SideNav bên trái, content bên phải
 
 import SideNav from '@/app/ui/dashboard/sidenav';
+import UserInfo from '@/app/ui/user-info';
 
 export default function DashboardLayout({
   // children: React component content của page hiện tại
@@ -17,7 +18,7 @@ export default function DashboardLayout({
     // flex-col md:flex-row: column trên mobile, row trên desktop
     // md:overflow-hidden: desktop không scroll, chỉ content scroll
     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-      
+
       {/* SideNav section - bên trái */}
       {/* w-full md:w-64: full width trên mobile, 256px (64 * 4px) trên desktop */}
       {/* flex-none: không grow/shrink, fixed width */}
@@ -32,6 +33,9 @@ export default function DashboardLayout({
       <div className="grow p-6 md:overflow-y-auto md:p-12">
         {/* children: nội dung của page hiện tại */}
         {/* Được render ở vị trí này - dashboard/page, customers/page, hoặc invoices/page */}
+        <div className="mb-8">
+          <UserInfo />
+        </div>
         {children}
       </div>
     </div>

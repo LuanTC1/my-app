@@ -50,7 +50,7 @@
 - [x] **Chapter 13: Improving Accessibility** - Form validation, ARIA, keyboard navigation
 
 ### In Progress 🔄
-- [ ] **Chapter 14: Adding Authentication** - NextAuth.js, security
+- [ ] **Chapter 14: Adding Authentication** - NextAuth.js, GitHub OAuth, route protection
 - [ ] **Chapter 15: Adding Metadata** - SEO, metadata API
 - [ ] **Chapter 16: Next Steps** - Deployment & best practices
 
@@ -298,8 +298,110 @@ When helping with this project:
 
 ---
 
+## 🔐 Authentication - Chapter 14 Implementation
+
+### Configuration Files
+
+**auth.ts** (Root directory)
+- NextAuth.js v4 configuration (latest stable version)
+- GitHub OAuth provider setup
+- JWT session strategy (30-day expiration)
+- Callbacks for JWT and session handling
+- Extended TypeScript types for session/JWT
+
+**middleware.ts** (Root directory)
+- Route protection using withAuth middleware
+- Protected routes: /dashboard, /invoices, /customers
+- Redirects unauthenticated users to /login
+- Uses token-based authorization check
+- Matcher pattern excludes API and static routes
+
+**app/lib/auth.ts**
+- `getSession()`: Get current session in Server Components
+- `requireAuth()`: Require auth, redirect to login if missing
+- `getCurrentUser()`: Get current authenticated user
+
+### Pages & Components
+
+**app/login/page.tsx** (Client Component)
+- GitHub OAuth login button
+- Error handling with role="alert"
+- Loading state with aria-busy
+- Uses useSearchParams to capture callback URL
+- Focus rings and accessibility features
+- Responsive design with Tailwind
+
+**app/ui/logout-button.tsx** (Client Component)
+- Sign out functionality via signOut()
+- ARIA attributes for accessibility
+- Loading state indication
+- Redirects to /login after logout
+
+**app/ui/user-info.tsx** (Server Component)
+- Displays logged-in user info
+- Shows avatar (from GitHub), name, email
+- Includes LogoutButton
+- role="status" with aria-live="polite"
+
+### API Routes
+
+**app/api/auth/[...nextauth]/route.ts**
+- NextAuth route handlers (GET, POST)
+- Handles all OAuth callback and session endpoints
+- Uses authOptions from auth.ts
+
+### Environment Variables (.env.local)
+
+```env
+# GitHub OAuth
+GITHUB_ID=your_client_id
+GITHUB_SECRET=your_client_secret
+
+# NextAuth.js
+AUTH_SECRET=your_generated_secret
+NEXTAUTH_URL=http://localhost:3000
+```
+
+### Security Features
+
+- ✅ JWT-based sessions (no database sessions needed)
+- ✅ Route protection via middleware
+- ✅ Secure credential storage in .env.local
+- ✅ OAuth 2.0 protocol via NextAuth.js v4
+- ✅ Session expiration (30 days)
+- ✅ HTTPS enforced in production (via NEXTAUTH_URL)
+
+### Common Issues & Solutions
+
+| Issue | Solution |
+|-------|----------|
+| OAuth callback URL mismatch | Check GitHub app settings: `http://localhost:3000/api/auth/callback/github` |
+| "GITHUB_ID or GITHUB_SECRET not found" | Verify .env.local is set and dev server restarted |
+| Protected routes always redirect to login | Check middleware.ts exists in root, AUTH_SECRET is set |
+| User info not displaying | Verify UserInfo component is imported in dashboard layout |
+| Module not found: Can't resolve 'next-auth' | Run `npm install next-auth` |
+
+### Next Steps for Chapter 14
+
+- [ ] Setup GitHub OAuth app (get ID and Secret)
+- [ ] Add GitHub credentials to .env.local
+- [ ] Generate AUTH_SECRET with openssl
+- [ ] Update dashboard layout to display UserInfo component
+- [ ] Test login/logout flow end-to-end
+- [ ] Verify protected routes redirect correctly
+- [ ] Check session persists across page navigation
+
+---
+
 ## ✨ Last Updated
 - Created: April 22, 2026
+- Last Progress: Chapter 14 - Authentication (In Progress)
+  - NextAuth.js v5 configuration with GitHub OAuth
+  - Middleware for route protection
+  - Login page with OAuth button
+  - User info display component
+  - Logout functionality
+- Current Focus: Setting up GitHub OAuth and testing authentication flow
 
 ---
 
